@@ -3,11 +3,10 @@
 #include <iostream>
 
 void removeVowels(std::vector<std::string> vec){
-    std::vector<char> vowels = {'a', 'e', 'i', 'o', 'u',
-                           'A', 'E', 'I', 'O', 'U'};
+    std::string vowels = "aeiou";
     for(auto& pass:vec){
         while (pass.find_first_of(vowels) != std::string::npos) {
-        pass[pass.find_first_of(vowels)] = ''; 
+        pass[pass.find_first_of(vowels)] = '\0' ; 
     }
     }
     
