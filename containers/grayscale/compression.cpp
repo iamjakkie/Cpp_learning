@@ -2,20 +2,20 @@
 
 std::vector<std::pair<uint8_t, uint8_t>> compressGrayscale(const std::array<std::array<uint8_t, width>, height>& input){
     std::vector<std::pair<uint8_t, uint8_t>> res;
-    for(auto i : input){
+    res.reserve(width * height);
+    for(const auto& i : input){
         std::pair<uint8_t, uint8_t> pair;
-        auto prev = -1;
-        auto cnt = 0;
-        for(auto j: i){
+        uint8_t cnt = 1;
+        uint8_t prev = -1;
+        for(const uint8_t& j: i){
             if(j!=prev){
-                pair = std::make_pair(j, cnt);
+                pair = std::make_pair(j, 1);
                 prev = j;
-                cnt = 0;
             } else{
                 cnt++;
             }
-            pair = std::make_pair(prev, cnt);
         }
+        pair = std::make_pair(j, cnt);
         res.push_back(pair);
     }
     return res;
@@ -28,9 +28,13 @@ std::array<std::array<uint8_t, width>, height> decompressGrayscale(const std::ve
 }
 
 void printMap(const std::array<std::array<uint8_t, width>, height>& input){
-    for(auto i: input){
-        for(auto j: i){
-            std::cout << j << " ";
+    for(const auto& i: input){
+        for(const auto& j: i){
+            if(j < ' '){
+                std::cout << ' ';
+            } else{
+                std::cout << j;
+            }
         }
         std::cout << '\n';
     }
