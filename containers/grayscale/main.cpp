@@ -44,10 +44,6 @@ int main() {
     auto ninja = generateNinja();
     printMap(ninja);
     auto compressed = compressGrayscale(ninja);
-    std::cout << "test" << '\n';
-    for(const auto& i: compressed){
-        std::cout << i.first << " " << i.second << '\n';
-    }
     auto decompressed = decompressGrayscale(compressed);
     printMap(decompressed);
 
