@@ -27,18 +27,10 @@ std::vector<std::pair<uint8_t, uint8_t>> compressGrayscale(const std::array<std:
 std::array<std::array<uint8_t, width>, height> decompressGrayscale(const std::vector<std::pair<uint8_t, uint8_t>>& input){
     std::array<std::array<uint8_t, width>, height> res;
     auto cnt = 0;
-    auto cnt_outer = 0;
     for(auto& i: input){
-        std::array<uint8_t, width> gs;
-
         for(auto j = 0; j < i.second; j++){
-            gs[cnt++ + j] = i.first;
+            res[0][cnt++] = i.first;
         }
-        if(gs.size() == width){
-            cnt_outer++;
-            cnt = 0;
-        }
-        res[cnt_outer] = gs;
     }
     return res;
 }
